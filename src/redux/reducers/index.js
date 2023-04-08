@@ -3,7 +3,8 @@ const initialState = {
         lat : '',
         long : '',
         country : '',
-        regione : ''
+        regione : '',
+        nameCity : ''
     }
 }
 
@@ -45,6 +46,15 @@ const functionStorage = (state = initialState, action) => {
                     regione : action.payload
                 }
             }
+        case 'SET_NAME_CITY': 
+        return{
+            ...state,
+            city : {
+                ...state.city,
+
+                nameCity : action.payload
+            }
+        }
         default:
         return state
     }
