@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { Button, Container, Navbar, Form } from "react-bootstrap"
 import { useDispatch } from "react-redux";
-import { IconName } from "react-icons/fa";
 
 const MyNav = () => {
     const [query, setQuery] = useState(' ');
