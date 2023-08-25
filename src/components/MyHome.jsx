@@ -24,8 +24,6 @@ const MyHome = () => {
                 console.log(weatherMain);
                 console.log(weatherWind);
                 console.log(weatherHome);
-            } else {
-                console.log('errore fetch');
             }
         } catch (error) {
             console.log(error + 'fetch');
@@ -37,26 +35,42 @@ const MyHome = () => {
     }, [nameCity])
 
     const RosaDeiVenti = () => {
-        if (weatherWind.deg <= 45) {
-            return 'Nord / Nord Est'
-        } else if (weatherWind.deg >= 45 && weatherWind.deg <= 90) {
-            return 'Nord Est / Est'
-        } else if (weatherWind.deg >= 90 && weatherWind.deg <= 135) {
-            return 'Est / Sud Est'
-        } else if (weatherWind.deg >= 135 && weatherWind.deg <= 180) {
-            return 'Sud Est / Sud'
-        } else if (weatherWind.deg >= 180 && weatherWind.deg <= 225) {
-            return 'Sud / Sud Ovest'
-        } else if (weatherWind.deg >= 225 && weatherWind.deg <= 270) {
-            return 'Sud Ovest/ Ovest'
-        } else if (weatherWind.deg >= 270 && weatherWind.deg <= 315) {
-            return 'Ovest / Nord Ovest'
+        if (weatherWind.deg <= 25) {
+            return 'Nord / Nord Est - NNE - Tramontana'
+        } else if (weatherWind.deg >= 25 && weatherWind.deg <= 45) {
+            return 'Nord Est / Est - NE - Greco'
+        } else if (weatherWind.deg > 45 && weatherWind.deg <= 75) {
+            return 'Nord Est / Est - ENE - Greco'
+        } else if (weatherWind.deg > 75 && weatherWind.deg <= 90) {
+            return 'Est - E - Levante'
+        } else if (weatherWind.deg > 90 && weatherWind.deg <= 110) {
+            return 'Est / Sud Est - ESE - Levante'
+        } else if (weatherWind.deg > 110 && weatherWind.deg <= 135) {
+            return 'Sud Est / Est - ES - Sciroco'
+        } else if (weatherWind.deg > 135 && weatherWind.deg <= 155) {
+            return 'Sud Est / Est - SSE - Scirocco'
+        } else if (weatherWind.deg > 155 && weatherWind.deg <= 180) {
+            return 'Sud - S - Mezzogiorno'
+        } else if (weatherWind.deg > 180 && weatherWind.deg <= 200) {
+            return 'Sud / Sud Ovest - SSW - Mezzogiorno'
+        } else if (weatherWind.deg > 200 && weatherWind.deg <= 225) {
+            return 'Sud Ovest / Ovest - SW - Libeccio'
+        } else if (weatherWind.deg > 225 && weatherWind.deg <= 245) {
+            return 'Ovest / Sud Ovest - WSW - Libeccio'
+        } else if (weatherWind.deg > 245 && weatherWind.deg <= 270) {
+            return 'Ovest - W - Ponente'
+        } else if (weatherWind.deg > 270 && weatherWind.deg <= 290) {
+            return 'Ovest - Nord Ovest - WNW - Ponente'
+        } else if (weatherWind.deg > 290 && weatherWind.deg <= 315) {
+            return 'Nord Ovest / Ovest - NW - Maestrale'
+        } else if (weatherWind.deg > 315 && weatherWind.deg <= 335) {
+            return 'Nord Ovest / Ovest - NNW - Maestrale'
+        } else if (weatherWind.deg > 335 && weatherWind.deg <= 360) {
+            return 'Nord - N - Tramontana'
         } else {
             return 'Non ci sono dati disponibili sul vento'
         }
     }
-
-    console.log(RosaDeiVenti());
 
     let directionWind = RosaDeiVenti()
 
@@ -75,10 +89,10 @@ const MyHome = () => {
                             <h2 className="text-center mt-4">Venti e Temperatura</h2>
                             <Row>
                                 <Col xs={6}>
-                                    <h2 className="fs-4 text-center mt-4">Venti da :{' ' + directionWind}</h2>
+                                    <h2 className="fs-4 text-center mt-4">Venti da: {directionWind}</h2>
                                 </Col>
                                 <Col xs={6}>
-                                    <h2 className="fs-4 text-center mt-4">Temperatura di:{' ' + (weatherMain.temp - 273.15).toFixed(2) + '°'}</h2>
+                                    <h2 className="fs-4 text-center mt-4">Temperatura di: {Math.floor(weatherMain.temp - 273.15) + '°'}</h2>
                                 </Col>
                             </Row>
                         </Card.Text>
@@ -86,10 +100,10 @@ const MyHome = () => {
                             <h2 className="text-center mt-2">Temp. Max & Min</h2>
                             <Row>
                                 <Col xs={6}>
-                                    <h2 className="fs-4 text-center mt-4">Temp. Max :{(weatherMain.temp_max - 273.15).toFixed(2) + '°'}</h2>
+                                    <h2 className="fs-4 text-center mt-4">Temp. Max: {Math.floor(weatherMain.temp_max - 273.15) + '°'}</h2>
                                 </Col>
                                 <Col xs={6}>
-                                    <h2 className="fs-4 text-center mt-4">Temp. Min:{(weatherMain.temp_min - 273.15).toFixed(2) + '°'}</h2>
+                                    <h2 className="fs-4 text-center mt-4">Temp. Min: {Math.floor(weatherMain.temp_min - 273.15) + '°'}</h2>
                                 </Col>
                             </Row>
                         </Card.Text>
@@ -100,7 +114,6 @@ const MyHome = () => {
                 </Card>
             </Col>
         </Row>
-
     )
 
 
